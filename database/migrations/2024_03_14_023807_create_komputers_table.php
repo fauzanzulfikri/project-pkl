@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('komputers', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',55);
-            $table->string('username',55);
-            $table->string('password',100);
-            $table->string('foto',55)->nullable;
-            $table->enum('level',['admin','pelapor','teknisi']);
-            $table->rememberToken();
+            $table->char('nomor_komputer',100);
+            $table->string('posisi',55);
+            $table->enum('status',['pending','repair','success']);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('komputers');
     }
 };

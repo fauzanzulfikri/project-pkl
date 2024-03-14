@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','data user')
+@section('title','data komputer')
 @section('content')
     <div class="content-wrapper">
         <section class="content">
@@ -8,8 +8,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Data User</h4>
-                                <a href="/user/tambah" class="btn btn-info btn-{color}">Tambah</a>
+                                <h4>Data Komputer</h4>
+                                <a href="/komputer/tambah" class="btn btn-info btn-{color}">Tambah Data</a>
                             </div>
                             <div class="card-body">
                                 <div
@@ -21,27 +21,26 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th></th>
-                                                <th>Nama</th>
-                                                <th>Username</th>
-                                                <th>Level</th>
+                                                <th>Nomor Komputer</th>
+                                                <th>Posisi</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($user as $u)
+                                            @foreach ($komputer as $k)
                                             <tr>
-                                                <td>{{$u->id}}</td>
-                                                <td><img src="{{asset("images/user/$u->foto")}}" style="width:100px; height:100px;" alt=""></td>
-                                                <td>{{$u->nama}}</td>
-                                                <td>{{$u->username}}</td>
-                                                <td>{{$u->level}}</td>
+                                                <td>{{$k->id}}</td>
+                                                <td>{{$k->nomor_komputer}}</td>
+                                                <td>{{$k->posisi}}</td>
+                                                <td>{{$k->status}}</td>
                                                 <td>
-                                                    <a href="/user/{{$u->id}}/edit" class="btn btn-warning btn-{color}">Edit</a>
-                                                    <a href="/user/{{$u->id}}/hapus" class="btn btn-danger btn-{color}" onclick="returnconfirm('Yakin Akan Dihapus?')">Hapus</a>
+                                                <a href="/laporank/{{$k->id}}/tambah" class="btn btn-info btn-{color}">Lapor Kerusakan</a>
+                                                <a href="/komputer/{{$k->id}}/edit" class="btn btn-warning btn-{color}">Edit</a>
+                                                <a href="/komputer/{{$k->id}}/hapus" class="btn btn-danger btn-{color}" onclick="returnconfirm('Yakin Akan Dihapus?')">Hapus</a>
                                                 </td>
                                             </tr>
                                             @endforeach
-                                        </tbody>
+                                        </tbody>                                        
                                     </table>
                                 </div>
                                 

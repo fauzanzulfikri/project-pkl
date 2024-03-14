@@ -37,6 +37,7 @@
                                         <select name="level" class="form-control">
                                             <option value="admin">Admin</option>
                                             <option value="pelapor">Pelapor</option>
+                                            <option value="teknisi">Teknisi</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
