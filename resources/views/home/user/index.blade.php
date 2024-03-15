@@ -31,7 +31,7 @@
                                             @foreach ($user as $u)
                                             <tr>
                                                 <td>{{$u->id}}</td>
-                                                <td><img src="{{asset("images/user/$u->foto")}}" style="width:100px; height:100px;" alt=""></td>
+                                                <td><img src="storage/images/user/{{$u->foto}}" style="width:100px; height:100px;" alt=""></td>
                                                 <td>{{$u->nama}}</td>
                                                 <td>{{$u->username}}</td>
                                                 <td>{{$u->level}}</td>

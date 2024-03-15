@@ -32,4 +32,18 @@ class LaporanKerusakan extends Model
     {
         return $this->belongsTo(Komputer::class, 'id_komputer', 'id');
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Event listener untuk menangani perubahan status komputer saat laporan kerusakan disimpan
+        static::saved(function ($laporanKerusakan) {
+            // Temukan komputer dengan status 'success' jika laporan kerusakan berhasil disimpan
+            $komputer = Komputer::where('status', 'success')->first();
+            if ($komputer) {
+                // Ubah status komputer menjadi 'repair'
+                $komputer->update(['status' => 'pending']);
+            }
+        });
+    }
 }

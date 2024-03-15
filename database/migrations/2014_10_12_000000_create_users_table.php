@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama',55);
             $table->string('username',55);
             $table->string('password',100);
-            $table->string('foto',55)->nullable;
+            $table->string('foto',100)->nullable();
             $table->enum('level',['admin','pelapor','teknisi']);
             $table->rememberToken();
             $table->timestamps();

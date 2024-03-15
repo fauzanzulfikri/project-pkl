@@ -14,8 +14,7 @@
                             <form action="/laporank/{{$laporankerusakan->id}}/update" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="">Komputer</label>
-                                <input type="text" class="form-control" name="id_komputer" placeholder="Masukan Komputer" value="{{$laporankerusakan->id_komputer}}" required>
+                                <input type="hidden" class="form-control" name="id_komputer" placeholder="Masukan Komputer" value="{{$laporankerusakan->id_komputer}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Tanggal</label>
@@ -25,8 +24,7 @@
                                 <label for="">Deskripsi Kerusakan</label>
                                 <textarea name="deskripsi" class="form-control" cols="30" rows="10" placeholder="Masukan Deskripsi Kerusakan" required>{{$laporankerusakan->deskripsi}}</textarea><br>
                             <div class="form-group">
-                                <label for="">Pelapor</label>
-                                <input type="text" class="form-control" name="id_user" placeholder="Masukan Nama Pelapor" value="{{$laporankerusakan->id_user}}" required>
+                                <input type="hidden" class="form-control" name="id_user" placeholder="Masukan Nama Pelapor" value="{{$laporankerusakan->id_user}}" required>
                             </div>
                             <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
                             <a href="/laporank" class="btn btn-{color} btn-secondary">Cancel</a>

@@ -28,6 +28,7 @@
                                         <option value="lab g" {{ old('posisi', $komputer->posisi) == 'lab g' ? 'selected' : '' }}>Lab G</option>
                                         <option value="lab h" {{ old('posisi', $komputer->posisi) == 'lab h' ? 'selected' : '' }}>Lab H</option>
                                 </select>
+                                
                                 </div>
                                 <div class="form-group">
                                     <label for="">Status</label>
