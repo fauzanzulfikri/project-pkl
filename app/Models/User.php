@@ -47,4 +47,16 @@ class User extends Authenticatable
     {
             return $this->hasMany(User::class, 'id_user', 'id');        
     }
+    public function isAdmin()
+    {
+        return $this->level === 'admin';
+    }
+    public function isTeknisi()
+    {
+        return $this->level === 'teknisi';
+    }
+    public function isPelapor()
+    {
+        return $this->level === 'pelapor';
+    }
 }

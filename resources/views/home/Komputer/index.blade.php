@@ -36,7 +36,7 @@
                                                 <td>
                                                 <a href="/laporank/{{$k->id}}/tambah" class="btn btn-info btn-{color}">Lapor Kerusakan</a>
                                                 <a href="/komputer/{{$k->id}}/edit" class="btn btn-warning btn-{color}">Edit</a>
-                                                <a href="/komputer/{{$k->id}}/hapus" class="btn btn-danger btn-{color}" onclick="returnconfirm('Yakin Akan Dihapus?')">Hapus</a>
+                                                <a href="/komputer/{{$k->id}}/hapus" class="btn btn-danger btn-{color}" onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -31,13 +31,13 @@
                                             @foreach ($user as $u)
                                             <tr>
                                                 <td>{{$u->id}}</td>
-                                                <td><img src="storage/images/user/{{$u->foto}}" style="width:100px; height:100px;" alt=""></td>
+                                                <td><img src="assets/images/user/{{$u->foto}}" style="width:100px; height:100px;" alt=""></td>
                                                 <td>{{$u->nama}}</td>
                                                 <td>{{$u->username}}</td>
                                                 <td>{{$u->level}}</td>
                                                 <td>
                                                     <a href="/user/{{$u->id}}/edit" class="btn btn-warning btn-{color}">Edit</a>
-                                                    <a href="/user/{{$u->id}}/hapus" class="btn btn-danger btn-{color}" onclick="returnconfirm('Yakin Akan Dihapus?')">Hapus</a>
+                                                    <a href="/user/{{$u->id}}/hapus" class="btn btn-danger btn-{color}" onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class UserController extends Controller
@@ -29,9 +28,12 @@ class UserController extends Controller
             'level' => 'required',
         ]);
 
-        $foto = uniqid() . '.' . $request->file('foto')->getClientOriginalExtension();
-        $fotoPath = $request->file('foto')->storeAs('public/images/user/', $foto);
+        if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
+            $file = $request->file('foto');
+            $foto = uniqid() . '.' . $file->getClientOriginalExtension(); // Nama file unik
 
+            $file->move(public_path('assets/images/user'), $foto); // Simpan file ke dalam direktori proyek
+        }
         User::create([
             'nama' => $request->nama,
             'username' => $request->username,
@@ -66,8 +68,19 @@ class UserController extends Controller
             'level' => 'required',
         ]);
 
-        $foto = uniqid() . '.' . $request->file('foto')->getClientOriginalExtension();
-        $fotoPath = $request->file('foto')->storeAs('public/images/user/', $foto);
+        if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
+            $file = $request->file('foto');
+            $foto = uniqid() . '.' . $file->getClientOriginalExtension(); // Nama file unik
+
+            $file->move(public_path('assets/images/user'), $foto); // Simpan file ke dalam direktori proyek
+
+            // Hapus foto lama sebelum menyimpan yang baru
+            if ($user->foto) {
+                unlink(public_path('assets/images/user/' . $user->foto));
+            }
+
+            $user->foto = $foto; // Gunakan $fileName sebagai nama file baru dalam basis data
+        }
 
         $user->update([
             'nama' => $request->nama,
@@ -83,6 +96,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        if ($user->foto) {
+            unlink(public_path('assets/images/user/' . $user->foto));
+        }
         $user->delete();
         return redirect('/user');
     }
