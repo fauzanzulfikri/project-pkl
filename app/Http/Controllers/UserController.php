@@ -102,4 +102,9 @@ class UserController extends Controller
         $user->delete();
         return redirect('/user');
     }
+    public function profile()
+    {
+        $user = User::all();
+        return view('home.user.profile',compact(['user']));
+    }
 }

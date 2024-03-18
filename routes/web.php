@@ -31,6 +31,8 @@ Route::post('/user/simpan',[UserController::class,'store'])->middleware('admin')
 Route::get('/user/{id}/edit',[UserController::class,'show'])->middleware('admin');
 Route::post('/user/{id}/update',[UserController::class,'update'])->middleware('admin');
 Route::get('/user/{id}/hapus',[UserController::class,'destroy'])->middleware('admin');
+Route::get('/user/profile',[UserController::class,'profile'])->middleware('auth');
+
 
 Route::get('/laporank',[LaporanKerusakanControllers::class,'index'])->middleware('auth');
 Route::get('/laporank/{id}/tambah',[LaporanKerusakanControllers::class,'create'])->middleware('auth');
