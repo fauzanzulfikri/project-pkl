@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
   
   </head>
   <body>
@@ -51,8 +52,8 @@
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
+                <a class="dropdown-item" href="/user/profile">
+                  <i class="mdi mdi-account-circle me-2 text-primary"></i> Profil </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">
                   <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
@@ -191,6 +192,12 @@
   <!-- Custom js for this page -->
   <script src="{{asset('assets/js/dashboard.js')}}"></script>
   <script src="{{asset('assets/js/todolist.js')}}"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
   <!-- End custom js for this page -->
 </body>
 </html>

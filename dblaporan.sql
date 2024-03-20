@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2024 at 06:29 AM
+-- Generation Time: Mar 20, 2024 at 09:28 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,7 +57,8 @@ CREATE TABLE `komputers` (
 --
 
 INSERT INTO `komputers` (`id`, `nomor_komputer`, `posisi`, `status`, `created_at`, `updated_at`) VALUES
-(1, '12', 'lab 4', 'pending', '2024-03-15 01:12:21', '2024-03-15 01:13:27');
+(1, '12', 'lab 4', 'success', '2024-03-15 01:12:21', '2024-03-20 01:00:47'),
+(2, '11', 'lab industri', 'success', '2024-03-20 01:01:07', '2024-03-20 01:01:07');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,8 @@ CREATE TABLE `laporan_kerusakans` (
 --
 
 INSERT INTO `laporan_kerusakans` (`id`, `id_user`, `id_komputer`, `tanggal`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, '2024-03-15', 'rusakk lagii', '2024-03-15 01:13:27', '2024-03-15 01:13:55');
+(2, 4, 1, '2024-03-20', 'rusakk', '2024-03-19 19:59:35', '2024-03-19 19:59:35'),
+(3, 8, 1, '2024-03-20', 'rusak coyy sama rusak', '2024-03-20 00:57:46', '2024-03-20 00:58:30');
 
 -- --------------------------------------------------------
 
@@ -160,7 +162,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `username`, `password`, `foto`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Fauzan', 'admin1', '$2y$10$bDLp29NwY2GhIt70GYUBs.l4oSwQRjygVxNsJUhOFayhH0YfPJlUi', '65f52e0172eba.jpg', 'admin', NULL, '2024-03-15 22:28:33', '2024-03-15 22:28:33');
+(4, 'Fauzan', 'admin1', '$2y$10$bDLp29NwY2GhIt70GYUBs.l4oSwQRjygVxNsJUhOFayhH0YfPJlUi', '65f52e0172eba.jpg', 'admin', NULL, '2024-03-15 22:28:33', '2024-03-15 22:28:33'),
+(8, 'Fauzan', 'ujan', '$2y$10$yATXiwH1a9F5ksTDAR6EhO5IEeDxSeHFZot4rcWQAP79E3Vw4sTeK', '65fa6bc7adf39.jpg', 'pelapor', NULL, '2024-03-19 21:39:06', '2024-03-19 21:53:27'),
+(10, 'Haikal', 'kentungzz', '$2y$10$l0n6VFyKTq2AoqyQ8.Ws5.hcmCjkl.WKoE1oThzng9WkFz8C6GcNG', '65fa7b3a98079.jpg', 'teknisi', NULL, '2024-03-19 22:47:57', '2024-03-19 22:59:22');
 
 --
 -- Indexes for dumped tables
@@ -225,13 +229,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `komputers`
 --
 ALTER TABLE `komputers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `laporan_kerusakans`
 --
 ALTER TABLE `laporan_kerusakans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -249,7 +253,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

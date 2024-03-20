@@ -42,6 +42,43 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Histori Laporan</h4>
+        <div
+                                    class="table-responsive"
+                                >
+                                    <table
+                                        class="table table-striped" id="dataTable"
+                                    >
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Komputer</th>
+                                                <th>Tanggal</th>
+                                                <th>Deskripsi</th>
+                                                <th>Pelapor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($laporankerusakan as $lk)
+                                            <tr>
+                                                <td>{{ $lk->id}}</td>
+                                                <td>{{ $lk->Komputer->nomor_komputer}} | {{ $lk->Komputer->posisi}}</td>
+                                                <td>{{ $lk->tanggal}}</td>
+                                                <td>{{ $lk->deskripsi}}</td>
+                                                <td>{{ $lk->User->nama}}</td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- content-wrapper ends -->

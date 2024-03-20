@@ -8,10 +8,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Edit Data User</h4>
+                                <h4>Edit Profile</h4>
                             </div>
                             <div class="card-body">
-                                <form action="/user/{{ $user->id }}/update" method="post" enctype="multipart/form-data">
+                                <form action="/user/{{ $user->id }}/update1" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="">Nama</label>
@@ -22,7 +22,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="form-group">
-                                        <label for="">Unggah Foto</label>
+                                        <label for="">Ganti Foto Profil</label>
                                         <input type="file" class="form-control" name="foto" accept="image/*">
                                     </div>
                                     @error('foto')
@@ -36,33 +36,8 @@
                                     @error('username')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <div class="form-group">
-                                        <label for="">Ganti Password</label>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Masukan Untuk Password">
-                                    </div>
-                                    @error('password')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                    <div class="form-group">
-                                        <label for="">Level</label>
-                                        <select name="level" class="form-control">
-                                            <option
-                                                value="admin"{{ old('level', $user->level) == 'admin' ? 'selected' : '' }}>
-                                                Admin</option>
-                                            <option value="pelapor"
-                                                {{ old('level', $user->level) == 'pelapor' ? 'selected' : '' }}>Pelapor
-                                            </option>
-                                            <option value="teknisi"
-                                                {{ old('level', $user->level) == 'teknisi' ? 'selected' : '' }}>Teknisi
-                                            </option>
-                                        </select>
-                                    </div>
-                                    @error('level')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                     <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
-                                    <a href="/user" class="btn btn-{color} btn-secondary">Cancel</a>
+                                    <a href="/user/profile" class="btn btn-{color} btn-secondary">Cancel</a>
                                 </form>
                             </div>
                         </div>

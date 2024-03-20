@@ -28,34 +28,33 @@
                 <div class="brand-logo">
                   <img src="{{asset('assets/images/logo.svg')}}">
                 </div>
-                <h4>Hello! let's get started</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
-                <form class="pt-3" action="/PostLogin" method="POST">
-                    {{csrf_field()}}
+                <h4>New here?</h4>
+                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                <form class="pt-3" action="/register" method="POST">
+                    @csrf
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-lg" placeholder="Nama" name="nama" value="{{ old('nama') }}">
+                      @error('nama')
+                      <div class="alert alert-danger">{{$message}}</div>
+                      @enderror
+                    </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" name="username" placeholder="Username">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" name="username" value="{{ old('username') }}">
+                    @error('username')
+                      <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="password" >
+                    @error('password')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                   </div>
-                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                    <div class="mt-3">
-                      @if(session('error'))
-                <div class="alert alert-danger">
-                    {{session('error')}}
-                </div>
-                @endif
-                    </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input"> Keep me signed in </label>
-                    </div>
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div> 
-                  <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="/r" class="text-primary">Create</a>
+                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Buat Akun</button>
+                  <div class="text-center mt-4 font-weight-light"> Sudah Punya Akun? <a href="/" class="text-primary">Login</a>
                   </div>
                 </form>
+                
               </div>
             </div>
           </div>

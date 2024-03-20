@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','data komputer')
+@section('title', 'Data Komputer')
 @section('content')
     <div class="content-wrapper">
         <section class="content">
@@ -9,41 +9,50 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Data Komputer</h4>
-                                <a href="/komputer/tambah" class="btn btn-info btn-{color}">Tambah Data</a>
+                                @if (Auth::user()->level !== 'pelapor')
+                                    <a href="/komputer/tambah" class="btn btn-info">Tambah Data</a>
+                                @endif
                             </div>
                             <div class="card-body">
-                                <div
-                                    class="table-responsive"
-                                >
-                                    <table
-                                        class="table table-striped"
-                                    >
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="dataTable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nomor Komputer</th>
                                                 <th>Posisi</th>
                                                 <th>Status</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($komputer as $k)
-                                            <tr>
-                                                <td>{{$k->id}}</td>
-                                                <td>{{$k->nomor_komputer}}</td>
-                                                <td>{{$k->posisi}}</td>
-                                                <td>{{$k->status}}</td>
-                                                <td>
-                                                <a href="/laporank/{{$k->id}}/tambah" class="btn btn-info btn-{color}">Lapor Kerusakan</a>
-                                                <a href="/komputer/{{$k->id}}/edit" class="btn btn-warning btn-{color}">Edit</a>
-                                                <a href="/komputer/{{$k->id}}/hapus" class="btn btn-danger btn-{color}" onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td>{{ $k->id }}</td>
+                                                    <td>{{ $k->nomor_komputer }}</td>
+                                                    <td>{{ $k->posisi }}</td>
+                                                    <td>{{ $k->status }}</td>
+                                                    <td>
+                                                        <a href="/laporank/{{ $k->id }}/tambah"
+                                                            class="btn btn-info">Lapor Kerusakan</a>
+                                                        @if (Auth::user()->level !== 'pelapor')
+                                                            <button type="button" class="btn btn-warning"
+                                                                data-bs-toggle="modal" data-bs-target="#modalId"
+                                                                data-komputer-id="{{ $k->id }}"
+                                                                onclick="prepareModal(this)">
+                                                                Edit
+                                                            </button>
+
+                                                            <a href="/komputer/{{ $k->id }}/hapus"
+                                                                class="btn btn-danger"
+                                                                onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
                                             @endforeach
-                                        </tbody>                                        
+                                        </tbody>
                                     </table>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -51,4 +60,66 @@
             </div>
         </section>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Komputer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for editing data -->
+                    <form id="editForm" action="/komputer/{{ $k->id }}/update" method="post">
+                        @csrf
+                        <input type="hidden" name="id" id="editKomputerId">
+                        <div class="mb-3">
+                            <label for="nomorKomputer" class="form-label">Nomor Komputer</label>
+                            <input type="number" class="form-control" id="nomorKomputer" name="nomor_komputer" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="posisi" class="form-label">Posisi</label>
+                            <select name="posisi" class="form-select" id="posisi">
+                                <option value="lab industri">Lab Industri</option>
+                                <option value="lab mesin1">Lab Mesin 1</option>
+                                <option value="lab mesin2">Lab Mesin 2</option>
+                                <option value="lab 4">Lab 4</option>
+                                <option value="lab f">Lab F</option>
+                                <option value="lab g">Lab G</option>
+                                <option value="lab h">Lab H</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select name="status" class="form-select" id="status">
+                                <option value="pending">Pending</option>
+                                <option value="repair">Repair</option>
+                                <option value="success">Success</option>
+                            </select>
+                        </div>
+                        <!-- Modal footer with save button -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Function to prepare modal with data
+        function prepareModal(button) {
+            var komputerId = $(button).data('komputer-id');
+            $.get('/komputer/' + komputerId + '/edit', function(data) {
+                console.log(data); // Periksa data yang diterima dari server
+                $('#editKomputerId').val(data.id);
+                $('#nomorKomputer').val(data.nomor_komputer);
+                $('#posisi').val(data.posisi);
+                $('#status').val(data.status);
+            });
+        }
+    </script>
+
 @endsection

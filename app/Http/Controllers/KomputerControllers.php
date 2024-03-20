@@ -55,7 +55,7 @@ class KomputerControllers extends Controller
     public function show($id)
     {
         $komputer = Komputer::find($id);
-        return view('home.Komputer.edit',compact(['komputer']));
+        return response()->json($komputer);
     }
 
     /**

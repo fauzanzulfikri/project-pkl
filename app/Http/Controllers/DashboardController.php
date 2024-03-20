@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $jumlah_user = User::count();
         $jumlah_komputer = Komputer::count();
         $jumlah_laporan = LaporanKerusakan::count();
-        return view('home.dashboard', compact(['jumlah_user','jumlah_komputer','jumlah_laporan']));
+        $laporankerusakan = LaporanKerusakan::all();
+        return view('home.dashboard', compact(['jumlah_user','jumlah_komputer','jumlah_laporan','laporankerusakan']));
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\LaporanKerusakanControllers;
 use App\Http\Controllers\KomputerControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/PostLogin',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 
+Route::get('/r',[RegisterController::class,'index'])->name('register');
+Route::post('/register',[RegisterController::Class,'register']);
+
 Route::get('/user',[UserController::class,'index'])->middleware('admin');
 Route::get('/user/tambah',[UserController::class,'create'])->middleware('admin');
 Route::post('/user/simpan',[UserController::class,'store'])->middleware('admin');
@@ -32,6 +36,8 @@ Route::get('/user/{id}/edit',[UserController::class,'show'])->middleware('admin'
 Route::post('/user/{id}/update',[UserController::class,'update'])->middleware('admin');
 Route::get('/user/{id}/hapus',[UserController::class,'destroy'])->middleware('admin');
 Route::get('/user/profile',[UserController::class,'profile'])->middleware('auth');
+Route::get('/user/{id}/editp',[UserController::class,'editp'])->middleware('auth');
+Route::post('/user/{id}/update1',[UserController::class,'editprofile'])->middleware('auth');
 
 
 Route::get('/laporank',[LaporanKerusakanControllers::class,'index'])->middleware('auth');

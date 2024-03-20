@@ -51,9 +51,49 @@ class UserController extends Controller
         return view('home.user.edit', compact('user'));
     }
 
-    public function edit($id)
+    public function editp($id)
     {
-        //
+        $user = User::find($id);
+        return view('home.user.editprofile', compact('user'));
+    }
+
+    public function editprofile(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $request->validate([
+            'nama' => 'required',
+            'username' => 'required|unique:users,username,' . $id,
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000',
+        ]);
+        $foto = $user->foto;
+        if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
+            $file = $request->file('foto');
+            $foto = uniqid() . '.' . $file->getClientOriginalExtension(); // Nama file unik
+
+            $file->move(public_path('assets/images/user'), $foto); // Simpan file ke dalam direktori proyek
+
+            // Hapus foto lama sebelum menyimpan yang baru
+            if ($user->foto && $user->foto !== 'default.png') {
+                unlink(public_path('assets/images/user/' . $user->foto));
+            }
+
+            $user->foto = $foto; // Gunakan $fileName sebagai nama file baru dalam basis data
+        }else {
+            // Jika tidak ada file yang diunggah, dan ada foto sebelumnya
+            if ($user->foto) {
+                // Atur foto pengguna ke foto yang ada di data sebelumnya
+                $user->foto = $user->foto;
+            }
+        }
+
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'foto'=>$foto,
+        ]);
+
+        return redirect('/user/profile');
     }
 
     public function update(Request $request, $id)
@@ -63,11 +103,11 @@ class UserController extends Controller
         $request->validate([
             'nama' => 'required',
             'username' => 'required|unique:users,username,' . $id,
-            'password' => 'required|min:5',
+            'password' => 'nullable|min:5',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000',
             'level' => 'required',
         ]);
-
+        $foto = $user->foto;
         if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
             $file = $request->file('foto');
             $foto = uniqid() . '.' . $file->getClientOriginalExtension(); // Nama file unik
@@ -80,12 +120,20 @@ class UserController extends Controller
             }
 
             $user->foto = $foto; // Gunakan $fileName sebagai nama file baru dalam basis data
+        }else {
+            // Jika tidak ada file yang diunggah, dan ada foto sebelumnya
+            if ($user->foto) {
+                // Atur foto pengguna ke foto yang ada di data sebelumnya
+                $user->foto = $user->foto;
+            }
+        }
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
         }
 
         $user->update([
             'nama' => $request->nama,
             'username' => $request->username,
-            'password' => bcrypt($request->password),
             'foto'=>$foto,
             'level' => $request->level,
         ]);
@@ -96,7 +144,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if ($user->foto) {
+        if ($user->foto && $user->foto !== 'default.png') {
             unlink(public_path('assets/images/user/' . $user->foto));
         }
         $user->delete();

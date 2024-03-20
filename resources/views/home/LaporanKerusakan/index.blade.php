@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','data laporan kerusakan')
+@section('title', 'data laporan kerusakan')
 @section('content')
     <div class="content-wrapper">
         <section class="content">
@@ -11,12 +11,8 @@
                                 <h4>Laporan Kerusakan</h4>
                             </div>
                             <div class="card-body">
-                                <div
-                                    class="table-responsive"
-                                >
-                                    <table
-                                        class="table table-striped"
-                                    >
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="dataTable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -28,23 +24,27 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($laporankerusakan as $lk)
-                                            <tr>
-                                                <td>{{ $lk->id}}</td>
-                                                <td>{{ $lk->Komputer->nomor_komputer}} | {{ $lk->Komputer->posisi}}</td>
-                                                <td>{{ $lk->tanggal}}</td>
-                                                <td>{{ $lk->deskripsi}}</td>
-                                                <td>{{ $lk->User->nama}}</td>
-                                            
-                                            <td>
-                                                <a href="/laporank/{{$lk->id}}/edit" class="btn btn-warning btn-{color}">Edit</a>
-                                                <a href="/laporank/{{$lk->id}}/hapus" class="btn btn-danger btn-{color}" onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                                <tr>
+                                                    <td>{{ $lk->id }}</td>
+                                                    <td>{{ $lk->Komputer->nomor_komputer }} | {{ $lk->Komputer->posisi }}
+                                                    </td>
+                                                    <td>{{ $lk->tanggal }}</td>
+                                                    <td>{{ $lk->deskripsi }}</td>
+                                                    <td>{{ $lk->User->nama }}</td>
+
+                                                    <td>
+                                                        <a href="/laporank/{{ $lk->id }}/edit"
+                                                            class="btn btn-warning btn-{color}">Edit</a>
+                                                        <a href="/laporank/{{ $lk->id }}/hapus"
+                                                            class="btn btn-danger btn-{color}"
+                                                            onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
