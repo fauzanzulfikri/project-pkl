@@ -20,13 +20,14 @@
                                                 <th>Tanggal</th>
                                                 <th>Deskripsi</th>
                                                 <th>Pelapor</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($laporankerusakan as $lk)
                                                 <tr>
                                                     <td>{{ $lk->id }}</td>
-                                                    <td>{{ $lk->Komputer->nomor_komputer }} | {{ $lk->Komputer->posisi }}
+                                                    <td>No. {{ $lk->Komputer->nomor_komputer }} | {{ $lk->Komputer->posisi }}
                                                     </td>
                                                     <td>{{ $lk->tanggal }}</td>
                                                     <td>{{ $lk->deskripsi }}</td>

@@ -76,17 +76,28 @@ class KomputerControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $komputer = Komputer::find($id);
+    public function update(Request $request)
+{
+    $komputer = Komputer::find($request->id);
+    
+    // Pastikan komputer ditemukan
+    if ($komputer) {
+        // Perbarui atribut-atribut komputer sesuai data yang dikirimkan melalui formulir
         $komputer->update([
-            'nomor_komputer'=>$request->nomor_komputer,
-            'posisi'=>$request->posisi,
-            'status'=>$request->status,
-            $request->except('_token'),
+            'nomor_komputer' => $request->nomor_komputer,
+            'posisi' => $request->posisi,
+            'status' => $request->status,
         ]);
+        
+        // Redirect kembali ke halaman data komputer
         return redirect('/komputer');
     }
+    
+    // Jika komputer tidak ditemukan, redirect kembali dengan pesan kesalahan
+    return redirect('/komputer')->with('error', 'Komputer tidak ditemukan.');
+}
+
+
 
     /**
      * Remove the specified resource from storage.

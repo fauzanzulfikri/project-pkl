@@ -35,13 +35,15 @@ class LaporanKerusakan extends Model
     protected static function boot()
     {
         parent::boot();
-
+    
         // Event listener untuk menangani perubahan status komputer saat laporan kerusakan disimpan
         static::saved(function ($laporanKerusakan) {
-            // Temukan komputer dengan status 'success' jika laporan kerusakan berhasil disimpan
-            $komputer = Komputer::where('status', 'success')->first();
-            if ($komputer) {
-                // Ubah status komputer menjadi 'repair'
+            // Dapatkan komputer terkait dengan laporan kerusakan yang baru disimpan
+            $komputer = $laporanKerusakan->komputer;
+    
+            // Periksa apakah komputer ditemukan dan memiliki status 'success'
+            if ($komputer && $komputer->status === 'success') {
+                // Ubah status komputer menjadi 'pending'
                 $komputer->update(['status' => 'pending']);
             }
         });

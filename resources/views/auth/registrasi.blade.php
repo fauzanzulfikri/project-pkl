@@ -28,8 +28,8 @@
                 <div class="brand-logo">
                   <img src="{{asset('assets/images/logo.svg')}}">
                 </div>
-                <h4>New here?</h4>
-                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                <h4>Belum Punya Akun?</h4>
+                <h6 class="font-weight-light">Silahkan buat akun terlebih dahulu!</h6>
                 <form class="pt-3" action="/register" method="POST">
                     @csrf
                     <div class="form-group">
@@ -50,7 +50,7 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                   </div>
-                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Buat Akun</button>
+                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"  style="width: 310px;" >Buat Akun</button>
                   <div class="text-center mt-4 font-weight-light"> Sudah Punya Akun? <a href="/" class="text-primary">Login</a>
                   </div>
                 </form>

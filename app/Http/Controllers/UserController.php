@@ -28,11 +28,14 @@ class UserController extends Controller
             'level' => 'required',
         ]);
 
-        if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
+        if ($request->hasFile('foto')) { 
+            // Jika ada file foto yang diunggah oleh pengguna
             $file = $request->file('foto');
             $foto = uniqid() . '.' . $file->getClientOriginalExtension(); // Nama file unik
-
             $file->move(public_path('assets/images/user'), $foto); // Simpan file ke dalam direktori proyek
+        } else {
+            // Jika pengguna tidak mengunggah foto, atur foto default
+            $foto = 'default.png';
         }
         User::create([
             'nama' => $request->nama,

@@ -21,6 +21,7 @@
                                                 <th>Nama</th>
                                                 <th>Username</th>
                                                 <th>Level</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

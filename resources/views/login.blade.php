@@ -28,8 +28,8 @@
                 <div class="brand-logo">
                   <img src="{{asset('assets/images/logo.svg')}}">
                 </div>
-                <h4>Hello! let's get started</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
+                <h4>Halo, Selamat Datang!</h4>
+                <h6 class="font-weight-light">Login terlebih dahulu!</h6>
                 <form class="pt-3" action="/PostLogin" method="POST">
                     {{csrf_field()}}
                   <div class="form-group">
@@ -38,7 +38,9 @@
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
                   </div>
-                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                  <div class="mt-3">
+                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" style="width: 310px;">Log In</button>
+                  </div>
                     <div class="mt-3">
                       @if(session('error'))
                 <div class="alert alert-danger">
@@ -46,14 +48,7 @@
                 </div>
                 @endif
                     </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input"> Keep me signed in </label>
-                    </div>
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div> 
-                  <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="/r" class="text-primary">Create</a>
+                  <div class="text-center mt-4 font-weight-light"> Belum Punya Akun? <a href="/r" class="text-primary">Buat Akun</a>
                   </div>
                 </form>
               </div>

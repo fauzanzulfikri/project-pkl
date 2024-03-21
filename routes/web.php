@@ -27,7 +27,7 @@ Route::post('/PostLogin',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 
 Route::get('/r',[RegisterController::class,'index'])->name('register');
-Route::post('/register',[RegisterController::Class,'register']);
+Route::post('/register',[RegisterController::class,'register']);
 
 Route::get('/user',[UserController::class,'index'])->middleware('admin');
 Route::get('/user/tambah',[UserController::class,'create'])->middleware('admin');
@@ -51,5 +51,5 @@ Route::get('/komputer',[KomputerControllers::class,'index'])->middleware('auth')
 Route::get('/komputer/tambah',[KomputerControllers::class,'create'])->middleware('teknisi');
 Route::post('/komputer/simpan',[KomputerControllers::class,'store'])->middleware('teknisi');
 Route::get('/komputer/{id}/edit',[KomputerControllers::class,'show'])->middleware('teknisi');
-Route::post('/komputer/{id}/update',[KomputerControllers::class,'update'])->middleware('teknisi');
+Route::put('/komputer/update', [KomputerControllers::class, 'update'])->middleware('teknisi');
 Route::get('/komputer/{id}/hapus',[KomputerControllers::class,'destroy'])->middleware('teknisi');

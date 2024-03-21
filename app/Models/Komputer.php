@@ -18,7 +18,7 @@ class Komputer extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Komputer(): HasMany
+    public function Komputer()
     {
         return $this->hasMany(Komputer::class, 'id_komputer', 'id');
     }
