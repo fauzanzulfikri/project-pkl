@@ -30,14 +30,6 @@
                                             <option value="lab h">Lab H</option>
                                         </select>
                                     </div>
-                                    {{-- <div class="form-group">
-                                    <label for="">Status</label>
-                                    <select name="status" class="form-control">
-                                        <option value="pending">Pending</option>
-                                        <option value="repair">Repair</option>
-                                        <option value="success">Success</option>
-                                    </select>
-                                </div> --}}
                                     <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
                                     <button type="reset" class="btn btn-{color} btn-secondary">Cancel</button>
                                 </form>
