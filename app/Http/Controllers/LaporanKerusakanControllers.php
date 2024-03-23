@@ -108,4 +108,9 @@ class LaporanKerusakanControllers extends Controller
         $laporankerusakan->delete();
         return redirect('/laporank');
     }
+    public function cetak()
+    {
+        $laporankerusakan = LaporanKerusakan::all();
+        return view('home.LaporanKerusakan.cetak',compact(['laporankerusakan']));
+    }
 }

@@ -26,7 +26,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="{{asset('assets/images/logo.svg')}}">
+                  <img src="{{asset('assets/images/logo/logo-2.svg')}}">
                 </div>
                 <h4>Halo, Selamat Datang!</h4>
                 <h6 class="font-weight-light">Login terlebih dahulu!</h6>
@@ -39,7 +39,7 @@
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
                   </div>
                   <div class="mt-3">
-                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" style="width: 310px;">Log In</button>
+                    <button class="btn btn-block btn-gradient-info btn-lg font-weight-medium auth-form-btn" style="width: 335px;">Log In</button>
                   </div>
                     <div class="mt-3">
                       @if(session('error'))

@@ -31,7 +31,7 @@
                                         <input type="hidden" class="form-control" name="id_user"
                                             placeholder="Masukan Nama Pelapor" value="{{ Auth()->User()->id }}" required>
                                     </div>
-                                    <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-{color} btn-info">Simpan</button>
                                     <button type="reset" class="btn btn-{color} btn-secondary">Cancel</button>
                                 </form>
                             </div>

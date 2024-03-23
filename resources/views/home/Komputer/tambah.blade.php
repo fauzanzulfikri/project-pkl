@@ -30,7 +30,7 @@
                                             <option value="lab h">Lab H</option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-{color} btn-info">Simpan</button>
                                     <button type="reset" class="btn btn-{color} btn-secondary">Cancel</button>
                                 </form>
                             </div>

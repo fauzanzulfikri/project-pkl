@@ -101,7 +101,7 @@
                         </div>
                         <!-- Modal footer with save button -->
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-info">Simpan</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>

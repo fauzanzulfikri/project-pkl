@@ -32,7 +32,7 @@
                                                 placeholder="Masukan Nama Pelapor" value="{{ $laporankerusakan->id_user }}"
                                                 required>
                                         </div>
-                                        <button type="submit" class="btn btn-{color} btn-primary">Simpan</button>
+                                        <button type="submit" class="btn btn-{color} btn-info">Simpan</button>
                                         <a href="/laporank" class="btn btn-{color} btn-secondary">Cancel</a>
                                 </form>
                             </div>

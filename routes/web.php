@@ -46,6 +46,7 @@ Route::post('/laporank/simpan',[LaporanKerusakanControllers::class,'store'])->mi
 Route::get('/laporank/{id}/edit',[LaporanKerusakanControllers::class,'show'])->middleware('auth');
 Route::post('/laporank/{id}/update',[LaporanKerusakanControllers::class,'update'])->middleware('auth');
 Route::get('/laporank/{id}/hapus',[LaporanKerusakanControllers::class,'destroy'])->middleware('auth');
+Route::get('laporank/cetak',[LaporanKerusakanControllers::class,'cetak'])->middleware('auth');
 
 Route::get('/komputer',[KomputerControllers::class,'index'])->middleware('auth');
 Route::get('/komputer/tambah',[KomputerControllers::class,'create'])->middleware('teknisi');

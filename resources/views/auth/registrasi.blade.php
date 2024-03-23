@@ -26,7 +26,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="{{asset('assets/images/logo.svg')}}">
+                  <img src="{{asset('assets/images//logo/logo-2.svg')}}">
                 </div>
                 <h4>Belum Punya Akun?</h4>
                 <h6 class="font-weight-light">Silahkan buat akun terlebih dahulu!</h6>
@@ -50,7 +50,7 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                   </div>
-                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"  style="width: 310px;" >Buat Akun</button>
+                  <button type="submit" class="btn btn-block btn-gradient-info btn-lg font-weight-medium auth-form-btn"  style="width: 335px;" >Buat Akun</button>
                   <div class="text-center mt-4 font-weight-light"> Sudah Punya Akun? <a href="/" class="text-primary">Login</a>
                   </div>
                 </form>

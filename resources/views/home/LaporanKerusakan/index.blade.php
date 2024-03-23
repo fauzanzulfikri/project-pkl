@@ -9,6 +9,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Laporan Kerusakan</h4>
+                                <a href="/laporank/cetak" class="btn btn-success btn-{color}" target="_blank"><i class="mdi mdi-file-document"></i>  Cetak</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
