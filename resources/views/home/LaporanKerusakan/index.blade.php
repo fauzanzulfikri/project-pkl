@@ -9,7 +9,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Laporan Kerusakan</h4>
+                                @if (Auth::user()->level !== 'pelapor')
                                 <a href="/laporank/cetak" class="btn btn-success btn-{color}" target="_blank"><i class="mdi mdi-file-document"></i>  Cetak</a>
+                                @endif
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

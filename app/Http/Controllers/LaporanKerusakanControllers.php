@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\LaporanKerusakan;
 use App\Models\User;
 use App\Models\Komputer;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanKerusakanControllers extends Controller
 {
@@ -16,10 +17,21 @@ class LaporanKerusakanControllers extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+{
+    // Ambil level pengguna yang saat ini masuk
+    $userLevel = Auth::user()->level;
+
+    // Jika level pengguna adalah admin atau teknisi, maka tampilkan semua data laporan kerusakan
+    if ($userLevel == 'admin' || $userLevel == 'teknisi') {
         $laporankerusakan = LaporanKerusakan::all();
-        return view('home.LaporanKerusakan.index',compact(['laporankerusakan']));
+    } else {
+        // Jika level pengguna adalah pelapor, maka tampilkan hanya data yang dilaporkan oleh pengguna tersebut
+        $userId = Auth::id();
+        $laporankerusakan = LaporanKerusakan::where('id_user', $userId)->get();
     }
+
+    return view('home.LaporanKerusakan.index', compact('laporankerusakan'));
+}
 
     /**
      * Show the form for creating a new resource.
