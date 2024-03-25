@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'data laporan kerusakan')
+@section('title', 'Lapor Kerusakan')
 @section('content')
     <div class="content-wrapper">
         <secton class="content">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'dashboard')
+@section('title', 'MarhasTech Support')
 @section('content')
 
     <div class="main-panel">

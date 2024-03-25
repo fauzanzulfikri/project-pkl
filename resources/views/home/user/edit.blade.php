@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'edit siswa')
+@section('title', 'Edit Siswa')
 @section('content')
     <div class="content-wrapper">
         <section class="content">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'data user')
+@section('title', 'Kelola Data User')
 @section('content')
     <div class="content-wrapper">
         <section class="content">
