@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangepasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporanKerusakanControllers;
@@ -38,6 +39,8 @@ Route::get('/user/{id}/hapus',[UserController::class,'destroy'])->middleware('ad
 Route::get('/user/profile',[UserController::class,'profile'])->middleware('auth');
 Route::get('/user/{id}/editp',[UserController::class,'editp'])->middleware('auth');
 Route::post('/user/{id}/update1',[UserController::class,'editprofile'])->middleware('auth');
+Route::get('/gantipw/{id}',[UserController::class,'pw'])->middleware('auth');
+Route::post('/gantipw/{id}/update',[UserController::class,'gantipw'])->middleware(('auth'));
 
 
 Route::get('/laporank',[LaporanKerusakanControllers::class,'index'])->middleware('auth');
@@ -47,6 +50,7 @@ Route::get('/laporank/{id}/edit',[LaporanKerusakanControllers::class,'show'])->m
 Route::post('/laporank/{id}/update',[LaporanKerusakanControllers::class,'update'])->middleware('auth');
 Route::get('/laporank/{id}/hapus',[LaporanKerusakanControllers::class,'destroy'])->middleware('auth');
 Route::get('laporank/cetak',[LaporanKerusakanControllers::class,'cetak'])->middleware('auth');
+Route::get('/komputer/{id}/detail', [LaporanKerusakanControllers::class,'detail'])->middleware('teknisi');
 
 Route::get('/komputer',[KomputerControllers::class,'index'])->middleware('auth');
 Route::get('/komputer/tambah',[KomputerControllers::class,'create'])->middleware('teknisi');

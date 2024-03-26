@@ -13,35 +13,32 @@
             </div>
             <div class="row">
                 <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-danger card-img-holder text-white">
+                    <div class="card bg-gradient-danger card-img-holder text-white card-medium">
                         <div class="card-body">
                             <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                            <h4 class="font-weight-normal mb-3">Jumlah User <i class="mdi mdi-account"></i>
-                            </h4>
-                            <h2 class="mb-5">{{ $jumlah_user }}</h2>
+                            <h4 class="font-weight-normal mb-3" style="font-size: 16px;">Jumlah User <i class="mdi mdi-account"></i></h4>
+                            <h2 class="mb-5" style="font-size: 22px;">{{ $jumlah_user }}</h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-info card-img-holder text-white">
+                    <div class="card bg-gradient-info card-img-holder text-white card-medium">
                         <div class="card-body">
                             <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                            <h4 class="font-weight-normal mb-3">Jumlah Komputer <i class="mdi mdi-desktop-mac"></i>
-                            </h4>
-                            <h2 class="mb-5">{{ $jumlah_komputer }}</h2>
+                            <h4 class="font-weight-normal mb-3" style="font-size: 16px;">Jumlah Komputer <i class="mdi mdi-desktop-mac"></i></h4>
+                            <h2 class="mb-5" style="font-size: 22px;">{{ $jumlah_komputer }}</h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 stretch-card grid-margin">
-                    <div class="card bg-gradient-success card-img-holder text-white">
+                    <div class="card bg-gradient-success card-img-holder text-white card-medium">
                         <div class="card-body">
                             <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                            <h4 class="font-weight-normal mb-3">Jumlah Laporan <i class="mdi mdi-book"></i>
-                            </h4>
-                            <h2 class="mb-5">{{ $jumlah_laporan }}</h2>
+                            <h4 class="font-weight-normal mb-3" style="font-size: 16px;">Jumlah Laporan <i class="mdi mdi-book"></i></h4>
+                            <h2 class="mb-5" style="font-size: 22px;">{{ $jumlah_laporan }}</h2>
                         </div>
                     </div>
-                </div>
+                </div>                
                 <div class="row">
                     <div class="col-12 grid-margin">
                         <div class="card">

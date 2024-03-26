@@ -47,5 +47,14 @@ class LaporanKerusakan extends Model
                 $komputer->update(['status' => 'pending']);
             }
         });
+        static::deleted(function ($laporanKerusakan) {
+            $komputer = $laporanKerusakan->Komputer;
+
+            // Periksa apakah komputer ditemukan dan memiliki status 'pending' atau 'repair'
+            if ($komputer && in_array($komputer->status, ['pending', 'repair'])) {
+                // Ubah status komputer menjadi 'success'
+                $komputer->update(['status' => 'success']);
+            }
+        });
     }
 }

@@ -16,7 +16,7 @@ class KomputerControllers extends Controller
     public function index()
     {
         $komputer = Komputer::all();
-        return view('home.Komputer.index',compact(['komputer']));
+        return view('home.Komputer.index', compact(['komputer']));
     }
 
     /**
@@ -38,9 +38,9 @@ class KomputerControllers extends Controller
     public function store(Request $request)
     {
         Komputer::create([
-            'nomor_komputer'=>$request->nomor_komputer,
-            'posisi'=>$request->posisi,
-            'status'=>'success',
+            'nomor_komputer' => $request->nomor_komputer,
+            'posisi' => $request->posisi,
+            'status' => 'success',
             $request->except('_token'),
         ]);
         return redirect('/komputer');
@@ -77,25 +77,25 @@ class KomputerControllers extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-{
-    $komputer = Komputer::find($request->id);
-    
-    // Pastikan komputer ditemukan
-    if ($komputer) {
-        // Perbarui atribut-atribut komputer sesuai data yang dikirimkan melalui formulir
-        $komputer->update([
-            'nomor_komputer' => $request->nomor_komputer,
-            'posisi' => $request->posisi,
-            'status' => $request->status,
-        ]);
-        
-        // Redirect kembali ke halaman data komputer
-        return redirect('/komputer');
+    {
+        $komputer = Komputer::find($request->id);
+
+        // Pastikan komputer ditemukan
+        if ($komputer) {
+            // Perbarui atribut-atribut komputer sesuai data yang dikirimkan melalui formulir
+            $komputer->update([
+                'nomor_komputer' => $request->nomor_komputer,
+                'posisi' => $request->posisi,
+                'status' => $request->status,
+            ]);
+
+            // Redirect kembali ke halaman data komputer
+            return redirect('/komputer');
+        }
+
+        // Jika komputer tidak ditemukan, redirect kembali dengan pesan kesalahan
+        return redirect('/komputer')->with('error', 'Komputer tidak ditemukan.');
     }
-    
-    // Jika komputer tidak ditemukan, redirect kembali dengan pesan kesalahan
-    return redirect('/komputer')->with('error', 'Komputer tidak ditemukan.');
-}
 
 
 
@@ -110,5 +110,17 @@ class KomputerControllers extends Controller
         $komputer = Komputer::find($id);
         $komputer->delete();
         return redirect('/komputer');
+    }
+    // Di dalam KomputerController.php
+    public function detail($id)
+    {
+        // Mendapatkan data komputer
+        $komputer = Komputer::find($id);
+
+        // Mendapatkan laporan kerusakan terkait dengan komputer tersebut
+        $laporankerusakan = $komputer->laporankerusakan;
+
+        // Mengembalikan halaman detail laporan kerusakan
+        return view('home.LaporanKerusakan.detail', compact('komputer', 'laporankerusakan'));
     }
 }

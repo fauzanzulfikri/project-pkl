@@ -38,10 +38,10 @@
 
                                                     <td>
                                                         <a href="/laporank/{{ $lk->id }}/edit"
-                                                            class="btn btn-warning btn-{color}">Edit</a>
+                                                            class="btn btn-warning btn-sm"><span class="mdi mdi-border-color"></span></a>
                                                         <a href="/laporank/{{ $lk->id }}/hapus"
-                                                            class="btn btn-danger btn-{color}"
-                                                            onclick="return confirm('Yakin Akan Dihapus?')">Hapus</a>
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Yakin Akan Dihapus?')"><span class="mdi mdi-delete"></span></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

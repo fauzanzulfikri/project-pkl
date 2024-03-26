@@ -28,9 +28,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="text-center mt-3">
-                                    <a href="/user/{{ Auth::user()->id }}/editp" class="btn btn-warning btn-{color}">Edit
+                                <div class="text-center">
+                                    <a href="/user/{{ Auth::user()->id }}/editp" class="btn btn-warning btn-sm mr-2">Edit
                                         Profil</a>
+                                    <a href="/gantipw/{{ Auth::user()->id }}" class="btn btn-info btn-sm">Ganti Password</a>
                                 </div>
                             </div>
                         </div>

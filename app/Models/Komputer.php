@@ -18,8 +18,8 @@ class Komputer extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Komputer()
+    public function LaporanKerusakan()
     {
-        return $this->hasMany(Komputer::class, 'id_komputer', 'id');
+        return $this->hasMany(LaporanKerusakan::class, 'id_komputer', 'id');
     }
 }

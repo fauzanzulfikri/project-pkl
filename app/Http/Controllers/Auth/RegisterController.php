@@ -18,7 +18,7 @@ class RegisterController extends Controller
             'nama' => 'required',
             'username' => 'required|unique:users',
             'password' => 'required|min:5',
-            ]);
+        ]);
 
         $user = new User();
         $user->nama = $request->nama;

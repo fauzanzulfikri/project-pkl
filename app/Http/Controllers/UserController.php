@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,11 +27,21 @@ class UserController extends Controller
             'nama' => 'required',
             'username' => 'required|unique:users',
             'password' => 'required|min:5',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000', 
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000',
             'level' => 'required',
+        ], [
+            'nama.required' => 'Kolom nama harus diisi.',
+            'username.required' => 'Kolom username harus diisi.',
+            'username.unique' => 'Username sudah digunakan. Harap pilih username lain.',
+            'password.required' => 'Kolom password harus diisi.',
+            'password.min' => 'Password harus terdiri dari minimal 5 karakter.',
+            'foto.image' => 'Berkas yang diunggah harus berupa gambar.',
+            'foto.mimes' => 'Format gambar yang diperbolehkan adalah jpeg, png, jpg, atau gif.',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
+            'level.required' => 'Kolom level harus diisi.',
         ]);
 
-        if ($request->hasFile('foto')) { 
+        if ($request->hasFile('foto')) {
             // Jika ada file foto yang diunggah oleh pengguna
             $file = $request->file('foto');
             $foto = uniqid() . '.' . $file->getClientOriginalExtension(); // Nama file unik
@@ -67,7 +80,14 @@ class UserController extends Controller
         $request->validate([
             'nama' => 'required',
             'username' => 'required|unique:users,username,' . $id,
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000'
+        ], [
+            'nama.required' => 'Kolom nama harus diisi.',
+            'username.required' => 'Kolom username harus diisi.',
+            'username.unique' => 'Username sudah digunakan. Harap pilih username lain.',
+            'foto.image' => 'Berkas yang diunggah harus berupa gambar.',
+            'foto.mimes' => 'Format gambar yang diperbolehkan adalah jpeg, png, jpg, atau gif.',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
         ]);
         $foto = $user->foto;
         if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
@@ -82,7 +102,7 @@ class UserController extends Controller
             }
 
             $user->foto = $foto; // Gunakan $fileName sebagai nama file baru dalam basis data
-        }else {
+        } else {
             // Jika tidak ada file yang diunggah, dan ada foto sebelumnya
             if ($user->foto) {
                 // Atur foto pengguna ke foto yang ada di data sebelumnya
@@ -93,7 +113,7 @@ class UserController extends Controller
         $user->update([
             'nama' => $request->nama,
             'username' => $request->username,
-            'foto'=>$foto,
+            'foto' => $foto,
         ]);
 
         return redirect('/user/profile');
@@ -108,7 +128,17 @@ class UserController extends Controller
             'username' => 'required|unique:users,username,' . $id,
             'password' => 'nullable|min:5',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000',
-            'level' => 'required',
+            'level' => 'required'
+        ], [
+            'nama.required' => 'Kolom nama harus diisi.',
+            'username.required' => 'Kolom username harus diisi.',
+            'username.unique' => 'Username sudah digunakan. Harap pilih username lain.',
+            'password.required' => 'Kolom password harus diisi.',
+            'password.min' => 'Password harus terdiri dari minimal 5 karakter.',
+            'foto.image' => 'Berkas yang diunggah harus berupa gambar.',
+            'foto.mimes' => 'Format gambar yang diperbolehkan adalah jpeg, png, jpg, atau gif.',
+            'foto.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
+            'level.required' => 'Kolom level harus diisi.',
         ]);
         $foto = $user->foto;
         if ($request->hasFile('foto')) { // Tambahkan kondisi if untuk memeriksa apakah ada file yang diunggah
@@ -123,7 +153,7 @@ class UserController extends Controller
             }
 
             $user->foto = $foto; // Gunakan $fileName sebagai nama file baru dalam basis data
-        }else {
+        } else {
             // Jika tidak ada file yang diunggah, dan ada foto sebelumnya
             if ($user->foto) {
                 // Atur foto pengguna ke foto yang ada di data sebelumnya
@@ -137,7 +167,7 @@ class UserController extends Controller
         $user->update([
             'nama' => $request->nama,
             'username' => $request->username,
-            'foto'=>$foto,
+            'foto' => $foto,
             'level' => $request->level,
         ]);
 
@@ -156,6 +186,33 @@ class UserController extends Controller
     public function profile()
     {
         $user = User::all();
-        return view('home.user.profile',compact(['user']));
+        return view('home.user.profile', compact(['user']));
+    }
+    public function pw($id)
+    {
+        $user = User::find($id);
+        return view('home.user.changepw', compact(['user']));
+    }
+    public function gantipw(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => ['required', function ($value, $fail) {
+                if (!Hash::check($value, Auth::user()->password)) {
+                    $fail('Password lama yang diberikan tidak cocok dengan password saat ini.');
+                }
+            }],
+            'new_password' => 'required|string|min:5|confirmed'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user = User::find($id);
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return redirect()->back()->withErrors('error', 'Password Salah!');
+        }
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        return redirect('/user/profile');
     }
 }
