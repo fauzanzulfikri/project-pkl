@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2024 at 08:20 AM
+-- Generation Time: Mar 27, 2024 at 08:14 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,14 +57,14 @@ CREATE TABLE `komputers` (
 --
 
 INSERT INTO `komputers` (`id`, `nomor_komputer`, `posisi`, `status`, `created_at`, `updated_at`) VALUES
-(3, '1', 'lab industri', 'repair', '2024-03-20 23:27:51', '2024-03-21 21:12:37'),
-(4, '2', 'lab industri', 'success', '2024-03-20 23:27:58', '2024-03-21 01:27:18'),
-(5, '3', 'lab industri', 'repair', '2024-03-20 23:28:05', '2024-03-21 21:12:44'),
-(6, '4', 'lab industri', 'success', '2024-03-20 23:28:12', '2024-03-20 23:28:12'),
-(7, '5', 'lab industri', 'success', '2024-03-20 23:28:22', '2024-03-21 01:27:28'),
-(8, '1', 'lab f', 'repair', '2024-03-20 23:36:38', '2024-03-21 21:12:50'),
-(9, '2', 'lab f', 'pending', '2024-03-20 23:36:44', '2024-03-22 01:16:26'),
-(10, '3', 'lab f', 'success', '2024-03-20 23:36:52', '2024-03-20 23:36:52'),
+(3, '1', 'lab industri', 'success', '2024-03-20 23:27:51', '2024-03-27 00:10:08'),
+(4, '2', 'lab industri', 'success', '2024-03-20 23:27:58', '2024-03-27 00:10:14'),
+(5, '3', 'lab industri', 'success', '2024-03-20 23:28:05', '2024-03-27 00:10:18'),
+(6, '4', 'lab industri', 'success', '2024-03-20 23:28:12', '2024-03-26 22:29:05'),
+(7, '5', 'lab industri', 'success', '2024-03-20 23:28:22', '2024-03-26 22:10:22'),
+(8, '1', 'lab f', 'success', '2024-03-20 23:36:38', '2024-03-26 20:57:20'),
+(9, '2', 'lab f', 'success', '2024-03-20 23:36:44', '2024-03-26 20:57:26'),
+(10, '3', 'lab f', 'success', '2024-03-20 23:36:52', '2024-03-26 20:57:06'),
 (13, '4', 'lab f', 'success', '2024-03-20 23:39:10', '2024-03-20 23:39:10'),
 (14, '5', 'lab f', 'success', '2024-03-20 23:39:19', '2024-03-20 23:39:19'),
 (15, '1', 'lab 4', 'success', '2024-03-20 23:40:11', '2024-03-20 23:40:11'),
@@ -88,17 +88,6 @@ CREATE TABLE `laporan_kerusakans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `laporan_kerusakans`
---
-
-INSERT INTO `laporan_kerusakans` (`id`, `id_user`, `id_komputer`, `tanggal`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(10, 8, 16, '2024-03-22', 'Mati nyala terus', '2024-03-21 21:00:33', '2024-03-21 21:00:40'),
-(11, 8, 3, '2024-03-22', 'Mouse nya ga jalan', '2024-03-21 21:08:16', '2024-03-21 21:08:16'),
-(12, 11, 5, '2024-03-22', 'Keyboardnya rusakk', '2024-03-21 21:09:57', '2024-03-21 21:09:57'),
-(13, 12, 8, '2024-03-22', 'Komputernya gabisa nyalaa', '2024-03-21 21:11:23', '2024-03-21 21:11:23'),
-(14, 8, 9, '2024-03-22', 'susah nyala', '2024-03-22 01:16:26', '2024-03-22 01:16:26');
 
 -- --------------------------------------------------------
 
@@ -179,10 +168,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nama`, `username`, `password`, `foto`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (4, 'Bapak Admin', 'admin', '$2y$10$bDLp29NwY2GhIt70GYUBs.l4oSwQRjygVxNsJUhOFayhH0YfPJlUi', '65f52e0172eba.jpg', 'admin', NULL, '2024-03-15 22:28:33', '2024-03-21 21:16:40'),
-(8, 'Fauzan', 'ujan', '$2y$10$yATXiwH1a9F5ksTDAR6EhO5IEeDxSeHFZot4rcWQAP79E3Vw4sTeK', '65fa6bc7adf39.jpg', 'pelapor', NULL, '2024-03-19 21:39:06', '2024-03-19 21:53:27'),
-(10, 'Haikal', 'haikal12', '$2y$10$pDrl/2fhJ.Pg1/clpYuFfOXcBKi36yD3i9lRAc7EqYWN/Iik1VR26', '65fa7b3a98079.jpg', 'teknisi', NULL, '2024-03-19 22:47:57', '2024-03-21 21:18:29'),
+(8, 'Fauzan', 'ujan', '$2y$10$3eA.ht3reyNHa9DctiyxtuLQht2qioycbTViq3IrMEyr.UnSWEclK', '65fa6bc7adf39.jpg', 'pelapor', NULL, '2024-03-19 21:39:06', '2024-03-26 00:47:18'),
+(10, 'Haikal', 'haikal12', '$2y$10$75if8iywWg1yyZFh7U0/fefCoHEHvNdKl5lmsgwdEQEKpijyQojsG', '65fa7b3a98079.jpg', 'teknisi', NULL, '2024-03-19 22:47:57', '2024-03-26 23:44:20'),
 (11, 'Bintang', 'bintang12', '$2y$10$2PJVsaAA/.uEaamu6pf3fO0t0LD.Y6Q4kp1qUt1NPi7jPX74P0EJy', 'default.png', 'pelapor', NULL, '2024-03-20 23:35:39', '2024-03-21 21:20:52'),
-(12, 'Faisa', 'faisa12', '$2y$10$nsak.8ymS3jansgshR/id.OAbFEU6OLWWoAkOLcUKSSmMwY/thGK2', 'default.png', 'pelapor', NULL, '2024-03-21 00:32:52', '2024-03-21 21:19:23');
+(12, 'Faisa', 'faisa12', '$2y$10$jccAqytj/Szl16AptHmM0OI.RSJ3IgeayM/AEGBYyUV0Bk5YAvDB.', 'default.png', 'pelapor', NULL, '2024-03-21 00:32:52', '2024-03-26 01:12:59'),
+(13, 'Gilang', 'lang', '$2y$10$Jye8eymXyDj/tqahPkE3WeSitSeUJoR/fwRmL4PerY.C.gbKqHR.m', 'default.png', 'pelapor', NULL, '2024-03-26 23:53:27', '2024-03-26 23:53:27');
 
 --
 -- Indexes for dumped tables
@@ -247,13 +237,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `komputers`
 --
 ALTER TABLE `komputers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `laporan_kerusakans`
 --
 ALTER TABLE `laporan_kerusakans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -271,7 +261,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -53,12 +53,11 @@ class LaporanKerusakanControllers extends Controller
      */
     public function store(Request $request)
     {
-        LaporanKerusakan::create([
+        $laporankerusakan = LaporanKerusakan::create([
             'id_user' => $request->id_user,
             'id_komputer' => $request->id_komputer,
             'tanggal' => $request->tanggal,
             'deskripsi' => $request->deskripsi,
-            $request->except('_token'),
         ]);
         return redirect('/laporank');
     }

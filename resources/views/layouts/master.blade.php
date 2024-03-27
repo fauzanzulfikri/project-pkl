@@ -18,8 +18,6 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/logo/logo-1.svg')}}" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-
-  
   </head>
   <body>
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">

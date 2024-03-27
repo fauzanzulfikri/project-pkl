@@ -38,7 +38,8 @@
                             <h2 class="mb-5" style="font-size: 22px;">{{ $jumlah_laporan }}</h2>
                         </div>
                     </div>
-                </div>                
+                </div>
+                @if (Auth::User()->level !== 'pelapor')       
                 <div class="row">
                     <div class="col-12 grid-margin">
                         <div class="card">
@@ -76,6 +77,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         <!-- content-wrapper ends -->
