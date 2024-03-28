@@ -196,23 +196,26 @@ class UserController extends Controller
     public function gantipw(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'old_password' => ['required', function ($value, $fail) {
-                if (!Hash::check($value, Auth::user()->password)) {
-                    $fail('Password lama yang diberikan tidak cocok dengan password saat ini.');
-                }
-            }],
+            'old_password' => 'required',
             'new_password' => 'required|string|min:5|confirmed'
+        ],[ 'new_password.confirmed' => 'Password tidak sama'
         ]);
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         $user = User::find($id);
 
+        // Periksa apakah password lama yang dimasukkan cocok dengan password yang ada dalam model User
         if (!Hash::check($request->old_password, $user->password)) {
-            return redirect()->back()->withErrors('error', 'Password Salah!');
+            return redirect()->back()->withErrors(['old_password' => 'Password lama yang diberikan tidak cocok dengan password saat ini.'])->withInput();
         }
+
+        // Jika password lama cocok, maka lanjutkan dengan mengganti password baru
         $user->password = Hash::make($request->new_password);
         $user->save();
+
         return redirect('/user/profile');
     }
 }

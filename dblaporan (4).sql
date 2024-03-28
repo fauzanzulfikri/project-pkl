@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2024 at 08:14 AM
+-- Generation Time: Mar 28, 2024 at 10:59 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -61,7 +61,7 @@ INSERT INTO `komputers` (`id`, `nomor_komputer`, `posisi`, `status`, `created_at
 (4, '2', 'lab industri', 'success', '2024-03-20 23:27:58', '2024-03-27 00:10:14'),
 (5, '3', 'lab industri', 'success', '2024-03-20 23:28:05', '2024-03-27 00:10:18'),
 (6, '4', 'lab industri', 'success', '2024-03-20 23:28:12', '2024-03-26 22:29:05'),
-(7, '5', 'lab industri', 'success', '2024-03-20 23:28:22', '2024-03-26 22:10:22'),
+(7, '5', 'lab industri', 'pending', '2024-03-20 23:28:22', '2024-03-27 19:50:48'),
 (8, '1', 'lab f', 'success', '2024-03-20 23:36:38', '2024-03-26 20:57:20'),
 (9, '2', 'lab f', 'success', '2024-03-20 23:36:44', '2024-03-26 20:57:26'),
 (10, '3', 'lab f', 'success', '2024-03-20 23:36:52', '2024-03-26 20:57:06'),
@@ -71,7 +71,9 @@ INSERT INTO `komputers` (`id`, `nomor_komputer`, `posisi`, `status`, `created_at
 (16, '2', 'lab 4', 'success', '2024-03-20 23:40:33', '2024-03-21 21:01:44'),
 (20, '3', 'lab 4', 'success', '2024-03-21 01:28:11', '2024-03-21 01:28:11'),
 (21, '4', 'lab 4', 'success', '2024-03-21 01:28:19', '2024-03-21 01:28:19'),
-(22, '5', 'lab 4', 'success', '2024-03-21 01:28:27', '2024-03-21 01:28:27');
+(22, '5', 'lab 4', 'success', '2024-03-21 01:28:27', '2024-03-21 01:28:27'),
+(34, '12', 'lab g', 'success', '2024-03-27 19:53:10', '2024-03-27 19:53:10'),
+(35, '12', 'lab g', 'success', '2024-03-27 19:53:10', '2024-03-27 19:53:10');
 
 -- --------------------------------------------------------
 
@@ -88,6 +90,13 @@ CREATE TABLE `laporan_kerusakans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `laporan_kerusakans`
+--
+
+INSERT INTO `laporan_kerusakans` (`id`, `id_user`, `id_komputer`, `tanggal`, `deskripsi`, `created_at`, `updated_at`) VALUES
+(102, 4, 7, '2024-03-28', 'ngefreeze mulu', '2024-03-27 19:50:48', '2024-03-27 20:03:24');
 
 -- --------------------------------------------------------
 
@@ -167,12 +176,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `username`, `password`, `foto`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Bapak Admin', 'admin', '$2y$10$bDLp29NwY2GhIt70GYUBs.l4oSwQRjygVxNsJUhOFayhH0YfPJlUi', '65f52e0172eba.jpg', 'admin', NULL, '2024-03-15 22:28:33', '2024-03-21 21:16:40'),
+(4, 'Bapak Admin', 'admin', '$2y$10$lDdvddF3BSJmKSC9.Pe/E.YA3Fjq3dWh4.EqsJXePJtf4vMrARWgm', '65f52e0172eba.jpg', 'admin', NULL, '2024-03-15 22:28:33', '2024-03-27 21:55:40'),
 (8, 'Fauzan', 'ujan', '$2y$10$3eA.ht3reyNHa9DctiyxtuLQht2qioycbTViq3IrMEyr.UnSWEclK', '65fa6bc7adf39.jpg', 'pelapor', NULL, '2024-03-19 21:39:06', '2024-03-26 00:47:18'),
-(10, 'Haikal', 'haikal12', '$2y$10$75if8iywWg1yyZFh7U0/fefCoHEHvNdKl5lmsgwdEQEKpijyQojsG', '65fa7b3a98079.jpg', 'teknisi', NULL, '2024-03-19 22:47:57', '2024-03-26 23:44:20'),
+(10, 'Haikal', 'haikal12', '$2y$10$kuLQcilYxE5keWRzeAlmbu0qZikJAMbQTjPbD8yXr47UWNB4GnEky', '65fa7b3a98079.jpg', 'teknisi', NULL, '2024-03-19 22:47:57', '2024-03-27 22:01:12'),
 (11, 'Bintang', 'bintang12', '$2y$10$2PJVsaAA/.uEaamu6pf3fO0t0LD.Y6Q4kp1qUt1NPi7jPX74P0EJy', 'default.png', 'pelapor', NULL, '2024-03-20 23:35:39', '2024-03-21 21:20:52'),
 (12, 'Faisa', 'faisa12', '$2y$10$jccAqytj/Szl16AptHmM0OI.RSJ3IgeayM/AEGBYyUV0Bk5YAvDB.', 'default.png', 'pelapor', NULL, '2024-03-21 00:32:52', '2024-03-26 01:12:59'),
-(13, 'Gilang', 'lang', '$2y$10$Jye8eymXyDj/tqahPkE3WeSitSeUJoR/fwRmL4PerY.C.gbKqHR.m', 'default.png', 'pelapor', NULL, '2024-03-26 23:53:27', '2024-03-26 23:53:27');
+(13, 'Gilang', 'lang', '$2y$10$Jye8eymXyDj/tqahPkE3WeSitSeUJoR/fwRmL4PerY.C.gbKqHR.m', 'default.png', 'pelapor', NULL, '2024-03-26 23:53:27', '2024-03-26 23:53:27'),
+(14, 'Gibran', 'gibran12', '$2y$10$jiv83qsAFnk4Xigff2vF3uP9lKAB2KRJPdgsqAe/tCyffpDIxBeDm', 'default.png', 'pelapor', NULL, '2024-03-27 20:07:39', '2024-03-27 20:09:17');
 
 --
 -- Indexes for dumped tables
@@ -237,13 +247,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `komputers`
 --
 ALTER TABLE `komputers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `laporan_kerusakans`
 --
 ALTER TABLE `laporan_kerusakans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -261,7 +271,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

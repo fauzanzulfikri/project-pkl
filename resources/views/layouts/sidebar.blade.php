@@ -12,7 +12,6 @@
             <span class="font-weight-bold mb-2">{{Auth()->User()->nama}}</span>
             <span class="text-secondary text-small">{{Auth()->User()->level}}</span>
           </div>
-          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
       </li>
       <li class="nav-item">

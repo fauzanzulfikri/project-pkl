@@ -42,11 +42,11 @@
         </section>
     </div>
 
-    <!-- Include SweetAlert library -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!-- Include SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-
+    <!-- Include SweetAlert library -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         // Ambil form laporan
         const laporanForm = document.getElementById('laporanForm');
@@ -57,27 +57,27 @@
 
             // Kirim data laporan menggunakan AJAX
             fetch('/laporank/simpan', {
-                method: 'POST',
-                body: new FormData(laporanForm),
-            })
-            .then(response => {
-                // Periksa status respons
-                if (!response.ok) {
-                    throw new Error('Terjadi kesalahan saat mengirim data.');
-                }
-                // Jika berhasil, tampilkan SweetAlert
-                swal("Laporan Anda Ditambahkan!", "Terima kasih telah melaporkan kerusakan", "success")
-                .then(() => {
-                    // Setelah menekan tombol OK pada SweetAlert,
-                    // Redirect ke halaman komputer
-                    window.location.href = "/komputer";
+                    method: 'POST',
+                    body: new FormData(laporanForm),
+                })
+                .then(response => {
+                    // Periksa status respons
+                    if (!response.ok) {
+                        throw new Error('Terjadi kesalahan saat mengirim data.');
+                    }
+                    // Jika berhasil, tampilkan SweetAlert
+                    swal("Berhasil!", "Terima kasih telah melaporkan kerusakan", "success")
+                        .then(() => {
+                            // Setelah menekan tombol OK pada SweetAlert,
+                            // Redirect ke halaman komputer
+                            window.location.href = "/komputer";
+                        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Jika terjadi kesalahan, tampilkan pesan error
+                    swal("Oops!", "Terjadi kesalahan saat mengirim data. Silakan coba lagi.", "error");
                 });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Jika terjadi kesalahan, tampilkan pesan error
-                swal("Oops!", "Terjadi kesalahan saat mengirim data. Silakan coba lagi.", "error");
-            });
         });
     </script>
 @endsection

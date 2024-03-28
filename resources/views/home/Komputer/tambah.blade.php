@@ -11,7 +11,7 @@
                                 <h4>Data Komputer</h4>
                             </div>
                             <div class="card-body">
-                                <form action="/komputer/simpan" method="post">
+                                <form action="/komputer/simpan" method="post" id="tambahkForm">
                                     @csrf
                                     <div class="form-group">
                                         <label for="">Nomor Komputer</label>
@@ -40,4 +40,41 @@
             </div>
         </section>
     </div>
+     <!-- Include SweetAlert CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+     <!-- Include SweetAlert library -->
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script>
+         // Ambil form laporan
+         const tambahkForm = document.getElementById('tambahkForm');
+ 
+         // Tambahkan event listener untuk submit form
+         tambahkForm.addEventListener('submit', function(event) {
+             event.preventDefault(); // Mencegah pengiriman formulir secara default
+ 
+             // Kirim data laporan menggunakan AJAX
+             fetch('/komputer/simpan', {
+                     method: 'POST',
+                     body: new FormData(tambahkForm),
+                 })
+                 .then(response => {
+                     // Periksa status respons
+                     if (!response.ok) {
+                         throw new Error('Terjadi kesalahan saat mengirim data.');
+                     }
+                     // Jika berhasil, tampilkan SweetAlert
+                     swal("Berhasil!", "Komputer baru telah ditambahkan", "success")
+                         .then(() => {
+                             // Setelah menekan tombol OK pada SweetAlert,
+                             // Redirect ke halaman komputer
+                             window.location.href = "/komputer";
+                         });
+                 })
+                 .catch(error => {
+                     console.error('Error:', error);
+                     // Jika terjadi kesalahan, tampilkan pesan error
+                     swal("Oops!", "Terjadi kesalahan saat mengirim data. Silakan coba lagi.", "error");
+                 });
+         });
+     </script>
 @endsection

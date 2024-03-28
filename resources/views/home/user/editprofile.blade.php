@@ -11,7 +11,7 @@
                                 <h4>Edit Profile</h4>
                             </div>
                             <div class="card-body">
-                                <form action="/user/{{ $user->id }}/update1" method="post" enctype="multipart/form-data">
+                                <form action="/user/{{ $user->id }}/update1" method="post" enctype="multipart/form-data" id="editpForm">
                                     @csrf
                                     <div class="form-group">
                                         <label for="">Nama</label>
@@ -46,4 +46,41 @@
             </div>
         </section>
     </div>
+    <!-- Include SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <!-- Include SweetAlert library -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        // Ambil form laporan
+        const editpForm = document.getElementById('editpForm');
+
+        // Tambahkan event listener untuk submit form
+        editpForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir secara default
+
+            // Kirim data laporan menggunakan AJAX
+            fetch('/user/{{ $user->id }}/update1', {
+                    method: 'POST',
+                    body: new FormData(editpForm),
+                })
+                .then(response => {
+                    // Periksa status respons
+                    if (!response.ok) {
+                        throw new Error('Terjadi kesalahan saat mengirim data.');
+                    }
+                    // Jika berhasil, tampilkan SweetAlert
+                    swal("Berhasil!", "Profil telah diubah", "success")
+                        .then(() => {
+                            // Setelah menekan tombol OK pada SweetAlert,
+                            // Redirect ke halaman komputer
+                            window.location.href = "/user/profile";
+                        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Jika terjadi kesalahan, tampilkan pesan error
+                    swal("Oops!", "Terjadi kesalahan saat mengirim data. Silakan coba lagi.", "error");
+                });
+        });
+        </script>
 @endsection

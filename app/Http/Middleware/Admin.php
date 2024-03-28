@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if(Auth()->guest()){
-            redirecet('/login');
+            redirect('/login');
         }
         if(Auth()->User()->level !== 'admin'){
             abort(403,'Unauthorized');

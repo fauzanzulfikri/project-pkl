@@ -10,7 +10,8 @@
                             <div class="card-header">
                                 <h4>Laporan Kerusakan</h4>
                                 @if (Auth::user()->level !== 'pelapor')
-                                <a href="/laporank/cetak" class="btn btn-success btn-{color}" target="_blank"><i class="mdi mdi-file-document"></i>  Cetak</a>
+                                    <a href="/laporank/cetak" class="btn btn-success btn-{color}" target="_blank"><i
+                                            class="mdi mdi-file-document"></i> Cetak</a>
                                 @endif
                             </div>
                             <div class="card-body">
@@ -30,18 +31,23 @@
                                             @foreach ($laporankerusakan as $lk)
                                                 <tr>
                                                     <td>{{ $lk->id }}</td>
-                                                    <td>No. {{ $lk->Komputer->nomor_komputer }} | {{ $lk->Komputer->posisi }}
+                                                    <td>No. {{ $lk->Komputer->nomor_komputer }} |
+                                                        {{ $lk->Komputer->posisi }}
                                                     </td>
                                                     <td>{{ $lk->tanggal }}</td>
                                                     <td>{{ $lk->deskripsi }}</td>
                                                     <td>{{ $lk->User->nama }}</td>
 
                                                     <td>
-                                                        <a href="/laporank/{{ $lk->id }}/edit"
-                                                            class="btn btn-warning btn-sm"><span class="mdi mdi-border-color"></span></a>
-                                                        <a href="/laporank/{{ $lk->id }}/hapus"
-                                                            class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Yakin Akan Dihapus?')"><span class="mdi mdi-delete"></span></a>
+                                                        @if (Auth::User()->level !== 'teknisi')
+                                                            <a href="/laporank/{{ $lk->id }}/edit"
+                                                                class="btn btn-warning btn-sm"><span
+                                                                    class="mdi mdi-border-color"></span></a>
+                                                            <a href="/laporank/{{ $lk->id }}/hapus"
+                                                                class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Yakin Akan Dihapus?')"><span
+                                                                    class="mdi mdi-delete"></span></a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

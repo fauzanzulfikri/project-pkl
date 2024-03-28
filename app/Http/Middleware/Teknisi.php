@@ -17,7 +17,7 @@ class Teknisi
     public function handle(Request $request, Closure $next)
     {
         if(Auth()->guest()){
-            redirecet('/login');
+            return redirect('/login');
         }
         if(Auth()->User()->level === 'pelapor'){
             abort(403,'Unauthorized');
